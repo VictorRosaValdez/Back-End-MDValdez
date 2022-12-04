@@ -27,9 +27,11 @@ namespace MDValdez.Dal.Repositories
             return domainAccounts;
         }
 
-        public Task<ActionResult<IEnumerable<Account>>> GetAccountByIdAsync()
+        public async Task<ActionResult<Account>> GetAccountByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var domainAccount = await _context.Account.FindAsync(id);
+
+            return domainAccount;
         }
     }
 }

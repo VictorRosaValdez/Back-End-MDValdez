@@ -10,7 +10,7 @@ namespace MDValdez.Profiles
         public AccountProfile()
         {
             // Mapping from the domain object to the readDTO object.
-            CreateMap<Customer, OrderReadDTO>();
+            CreateMap<Customer, AccountReadDTO>();
 
             // Mappinng from the createDTO object to the domain object. ReverseMap is for navigating both ways.
             CreateMap<AccountCreateDTO, Customer>().ReverseMap();
@@ -19,7 +19,7 @@ namespace MDValdez.Profiles
             CreateMap<AccountUpdateDTO, Customer>().ReverseMap();
 
             // Mapping from the domain object to the deleteDTO object.
-            CreateMap<Customer, OrderDeleteDTO>();
+            CreateMap<Customer, AccountDeleteDTO>();
 
 
         }

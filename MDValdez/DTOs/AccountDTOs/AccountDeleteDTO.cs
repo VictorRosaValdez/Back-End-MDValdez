@@ -2,7 +2,7 @@
 
 namespace MDValdez.DTOs.AccountDTOs
 {
-    public class OrderDeleteDTO
+    public class AccountDeleteDTO
     {
         public string CustomerName { get; set; }
         public string adress { get; set; }

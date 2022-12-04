@@ -27,9 +27,11 @@ namespace MDValdez.Dal.Repositories
             return domainProducts;
         }
 
-        public Task<ActionResult<IEnumerable<Product>>> GetProductByIdAsync()
+        public async Task<ActionResult<Product>> GetProductByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var domainProduct = await _context.Product.FindAsync(id);
+
+            return domainProduct;
         }
     }
 }

@@ -49,13 +49,13 @@ builder.Services.AddAutoMapper(typeof(Program));
 // Injection of ProductRepository
 builder.Services.AddScoped<IProductRepository,ProductRepository>();
 
-// Injection of OrderRepository
+// Injection of AccountRepository
 builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 
 // Injection of OrderRepository
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
-// Injection of OrderRepository
+// Injection of ShoppingCartRepository
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
 

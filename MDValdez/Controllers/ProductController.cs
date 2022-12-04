@@ -36,5 +36,29 @@ namespace MDValdez.Controllers
 
             return dtoProduct;
         }
+
+       
+      /// <summary>
+      /// Get a product by Id
+      /// </summary>
+      /// <param name="id">The product Id</param>
+      /// <returns>Return a product object</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ProductReadDTO>> GetProductById(int id)
+        {
+            var domainProduct = await _product.GetProductByIdAsync(id);
+
+            var dtoProduct = _mapper.Map<ProductReadDTO>(domainProduct.Value);
+
+            if (dtoProduct == null)
+            {
+                return NotFound();
+            }
+
+            return dtoProduct;
+        }
     }
 }

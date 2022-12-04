@@ -19,7 +19,7 @@ namespace MDValdez.Profiles
             CreateMap<OrderUpdateDTO, Order>().ReverseMap();
 
             // Mapping from the domain object to the deleteDTO object.
-            CreateMap<Order, OrderDeleteDTO>();
+            CreateMap<Order, OrderDeleteTO>();
 
 
         }

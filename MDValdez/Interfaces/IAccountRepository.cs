@@ -15,7 +15,7 @@ namespace MDValdez.Interfaces
         /// Abstract method to get an account by Id.
         /// </summary>
         /// <returns>A accountDto</returns>
-        Task<ActionResult<IEnumerable<Account>>> GetAccountByIdAsync();
+        Task<ActionResult<Account>> GetAccountByIdAsync(int id);
 
     }
 }

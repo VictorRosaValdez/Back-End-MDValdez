@@ -2,6 +2,7 @@
 using MDValdez.DTOs.AccountDTOs;
 using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
+using MDValdez.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -22,7 +23,7 @@ namespace MDValdez.Controllers
         }
 
         /// <summary>
-        /// Get all products.
+        /// Get all accounts.
         /// </summary>
         /// <response code="200">Succesfully returns a list of accounts</response>
         /// <returns></returns>
@@ -33,6 +34,29 @@ namespace MDValdez.Controllers
             var domainAccounts = await _account.GetAllAccountsAsync();
 
             var dtoAccount = _mapper.Map<List<OrderReadDTO>>(domainAccounts.Value);
+
+            return dtoAccount;
+        }
+
+        /// <summary>
+        /// Get an account by Id
+        /// </summary>
+        /// <param name="id">The account Id</param>
+        /// <returns>An account object</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<AccountReadDTO>> GetAccountById(int id)
+        {
+            var domainAccount = await _account.GetAccountByIdAsync(id);
+
+            var dtoAccount = _mapper.Map<AccountReadDTO>(domainAccount.Value);
+
+            if (dtoAccount == null)
+            {
+                return NotFound();
+            }
 
             return dtoAccount;
         }

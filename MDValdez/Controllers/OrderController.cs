@@ -2,6 +2,7 @@
 using MDValdez.DTOs.AccountDTOs;
 using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
+using MDValdez.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -36,5 +37,29 @@ namespace MDValdez.Controllers
 
             return dtoOrder;
         }
+
+        /// <summary>
+        /// Get an order by Id
+        /// </summary>
+        /// <param name="id">The order Id</param>
+        /// <returns>Return a order object</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<OrderReadDTO>> GetOrderById(int id)
+        {
+            var domainOrder = await _order.GetOrderByIdAsync(id);
+
+            var dtoOrder = _mapper.Map<OrderReadDTO>(domainOrder.Value);
+
+            if (dtoOrder == null)
+            {
+                return NotFound();
+            }
+
+            return dtoOrder;
+        }
+
     }
 }

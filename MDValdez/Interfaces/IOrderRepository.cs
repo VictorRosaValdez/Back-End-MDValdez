@@ -15,7 +15,7 @@ namespace MDValdez.Interfaces
         /// Abstract method to get an order by Id.
         /// </summary>
         /// <returns>A orderDto</returns>
-        Task<ActionResult<IEnumerable<Order>>> GetOrderByIdAsync();
+        Task<ActionResult<Order>> GetOrderByIdAsync(int id);
 
     }
 }

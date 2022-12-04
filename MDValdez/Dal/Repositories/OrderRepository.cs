@@ -22,9 +22,11 @@ namespace MDValdez.Dal.Repositories
             return domainOrders;
         }
 
-        public Task<ActionResult<IEnumerable<Order>>> GetOrderByIdAsync()
+        public async Task<ActionResult<Order>> GetOrderByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var domainOrder = await _context.Order.FindAsync(id);
+
+            return domainOrder;
         }
     }
 }

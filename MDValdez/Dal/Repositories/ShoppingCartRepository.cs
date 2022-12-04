@@ -18,14 +18,16 @@ namespace MDValdez.Dal.Repositories
         public async Task<ActionResult<IEnumerable<ShoppingCart>>> GetAllShoppingCartsAsync()
         {
            
-            var domainShoppingCart = await _context.ShoppingCart.ToListAsync();
+            var domainShoppingCarts = await _context.ShoppingCart.ToListAsync();
 
-            return domainShoppingCart;
+            return domainShoppingCarts;
         }
 
-        public Task<ActionResult<IEnumerable<ShoppingCart>>> GetShoppingCartByIdAsync()
+        public async Task<ActionResult<ShoppingCart>> GetShoppingCartByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var domainShoppingCart = await _context.ShoppingCart.FindAsync(id);
+
+            return domainShoppingCart;
         }
     }
 }

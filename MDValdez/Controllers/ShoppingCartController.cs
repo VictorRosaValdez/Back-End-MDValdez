@@ -2,6 +2,7 @@
 using MDValdez.DTOs.AccountDTOs;
 using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
+using MDValdez.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Net.Mime;
 
@@ -33,6 +34,29 @@ namespace MDValdez.Controllers
             var domainShoppingCarts = await _shoppingCart.GetAllShoppingCartsAsync();
 
             var dtoShoppingCart = _mapper.Map<List<ShoppingCartReadDTO>>(domainShoppingCarts.Value);
+
+            return dtoShoppingCart;
+        }
+
+        /// <summary>
+        /// Get a shoppingcart by Id
+        /// </summary>
+        /// <param name="id">The shoppingcart Id</param>
+        /// <returns>Return a shoppingcart object</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ShoppingCartReadDTO>> GetProductById(int id)
+        {
+            var domainShoppingCart = await _shoppingCart.GetShoppingCartByIdAsync(id);
+
+            var dtoShoppingCart = _mapper.Map<ShoppingCartReadDTO>(domainShoppingCart.Value);
+
+            if (dtoShoppingCart == null)
+            {
+                return NotFound();
+            }
 
             return dtoShoppingCart;
         }

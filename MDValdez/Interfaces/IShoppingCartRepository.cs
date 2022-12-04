@@ -15,7 +15,7 @@ namespace MDValdez.Interfaces
         /// Abstract method to get a shoppingCart by Id.
         /// </summary>
         /// <returns>A shoppingCartDto</returns>
-        Task<ActionResult<IEnumerable<ShoppingCart>>> GetShoppingCartByIdAsync();
+        Task<ActionResult<ShoppingCart>> GetShoppingCartByIdAsync(int id);
 
     }
 }

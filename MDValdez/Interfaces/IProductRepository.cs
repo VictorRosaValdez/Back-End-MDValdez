@@ -12,10 +12,11 @@ namespace MDValdez.Interfaces
         Task<ActionResult<IEnumerable<Product>>> GetAllProductsAsync();
 
         /// <summary>
-        /// Abstract method to get a product by Id.
+        /// Get a product by Id.
         /// </summary>
-        /// <returns>A productDto</returns>
-        Task<ActionResult<IEnumerable<Product>>> GetProductByIdAsync();
+        /// <param name="id">Th product ID</param>
+        /// <returns>A product object</returns>
+        Task<ActionResult<Product>> GetProductByIdAsync(int id);
 
     }
 }
