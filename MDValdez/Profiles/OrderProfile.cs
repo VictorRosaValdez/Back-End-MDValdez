@@ -5,21 +5,21 @@ using MDValdez.Models;
 
 namespace MDValdez.Profiles
 {
-    public class AccountProfile : Profile
+    public class OrderProfile : Profile
     {
-        public AccountProfile()
+        public OrderProfile()
         {
             // Mapping from the domain object to the readDTO object.
-            CreateMap<Customer, OrderReadDTO>();
+            CreateMap<Order, OrderReadDTO>();
 
             // Mappinng from the createDTO object to the domain object. ReverseMap is for navigating both ways.
-            CreateMap<AccountCreateDTO, Customer>().ReverseMap();
+            CreateMap<OrderCreateDTO, Order>().ReverseMap();
 
             // Mapping from the updateDTO object to the domain object. ReverseMap is for navigating both ways.
-            CreateMap<AccountUpdateDTO, Customer>().ReverseMap();
+            CreateMap<OrderUpdateDTO, Order>().ReverseMap();
 
             // Mapping from the domain object to the deleteDTO object.
-            CreateMap<Customer, OrderDeleteDTO>();
+            CreateMap<Order, OrderDeleteDTO>();
 
 
         }

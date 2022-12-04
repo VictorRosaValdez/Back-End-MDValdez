@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MDValdez.DTOs.AccountDTOs;
 using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,11 @@ namespace MDValdez.Controllers
     [Consumes(MediaTypeNames.Application.Json)]
     public class OrderController : ControllerBase
     {
-        private readonly IProductRepository _product;
+        private readonly IOrderRepository _order;
         private readonly IMapper _mapper;
-        public OrderController(IProductRepository product, IMapper mapper)
+        public OrderController(IOrderRepository order, IMapper mapper)
         {
-            _product = product;
+            _order = order;
             _mapper = mapper;
         }
 
@@ -27,13 +28,13 @@ namespace MDValdez.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDTO>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<OrderReadDTO>>> GetAllOrders()
         {
-            var domainProducts = await _product.GetAllProductsAsync();
+            var domainOrders = await _order.GetAllOrdersAsync();
 
-            var dtoProduct = _mapper.Map<List<ProductReadDTO>>(domainProducts.Value);
+            var dtoOrder = _mapper.Map<List<OrderReadDTO>>(domainOrders.Value);
 
-            return dtoProduct;
+            return dtoOrder;
         }
     }
 }

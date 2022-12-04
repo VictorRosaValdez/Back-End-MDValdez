@@ -28,11 +28,11 @@ namespace MDValdez.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<AccountReadDTO>>> GetAllAccounts()
+        public async Task<ActionResult<IEnumerable<OrderReadDTO>>> GetAllAccounts()
         {
             var domainAccounts = await _account.GetAllAccountsAsync();
 
-            var dtoAccount = _mapper.Map<List<AccountReadDTO>>(domainAccounts.Value);
+            var dtoAccount = _mapper.Map<List<OrderReadDTO>>(domainAccounts.Value);
 
             return dtoAccount;
         }

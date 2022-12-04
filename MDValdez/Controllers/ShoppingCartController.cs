@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MDValdez.DTOs.AccountDTOs;
 using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -12,11 +13,11 @@ namespace MDValdez.Controllers
     [Consumes(MediaTypeNames.Application.Json)]
     public class ShoppingCartController : ControllerBase
     {
-        private readonly IProductRepository _product;
+        private readonly IShoppingCartRepository _shoppingCart;
         private readonly IMapper _mapper;
-        public ShoppingCartController(IProductRepository product, IMapper mapper)
+        public ShoppingCartController(IShoppingCartRepository shoppingCart, IMapper mapper)
         {
-            _product = product;
+            _shoppingCart = shoppingCart;
             _mapper = mapper;
         }
 
@@ -27,13 +28,13 @@ namespace MDValdez.Controllers
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<ProductReadDTO>>> GetAllProducts()
+        public async Task<ActionResult<IEnumerable<ShoppingCartReadDTO>>> GetAllShoppingCarts()
         {
-            var domainProducts = await _product.GetAllProductsAsync();
+            var domainShoppingCarts = await _shoppingCart.GetAllShoppingCartsAsync();
 
-            var dtoProduct = _mapper.Map<List<ProductReadDTO>>(domainProducts.Value);
+            var dtoShoppingCart = _mapper.Map<List<ShoppingCartReadDTO>>(domainShoppingCarts.Value);
 
-            return dtoProduct;
+            return dtoShoppingCart;
         }
     }
 }

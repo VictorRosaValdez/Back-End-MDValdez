@@ -55,6 +55,9 @@ builder.Services.AddScoped<IAccountRepository, AccountRepository>();
 // Injection of OrderRepository
 builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
+// Injection of OrderRepository
+builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
+
 
 var app = builder.Build();
 

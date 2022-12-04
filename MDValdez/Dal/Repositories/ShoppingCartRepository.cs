@@ -9,6 +9,12 @@ namespace MDValdez.Dal.Repositories
     {
         // Variable for the DbContext
         private readonly MDDbContext _context;
+
+        public ShoppingCartRepository(MDDbContext context)
+        {
+            _context = context;
+        }
+
         public async Task<ActionResult<IEnumerable<ShoppingCart>>> GetAllShoppingCartsAsync()
         {
            

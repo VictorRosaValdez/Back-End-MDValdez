@@ -8,10 +8,10 @@ This will allow the customers to view and manage paper orders.The main objects a
 
 ## Installation
 
-Clone the source code from MDValdez (https://github.com/VictorRosaValdez/MDValdez)
+Clone the source code from MDValdez (https://github.com/VictorRosaValdez/Back-End-MDValdez.git)
 
 ```bash/powerShell
-	git clone https://github.com/VictorRosaValdez/MDValdez.git
+	git clone https://github.com/VictorRosaValdez/Back-End-MDValdez.git
 	cd MDValdez
 
 # Run the dabase
