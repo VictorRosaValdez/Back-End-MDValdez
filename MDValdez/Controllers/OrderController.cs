@@ -23,7 +23,7 @@ namespace MDValdez.Controllers
         /// <summary>
         /// Get all products.
         /// </summary>
-        /// <response code="200">Succesfully returns a list of products</response>
+        /// <response code="200">Succesfully returns a list of orders</response>
         /// <returns></returns>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
