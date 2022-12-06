@@ -1,4 +1,5 @@
-﻿using MDValdez.Models;
+﻿using MDValdez.DTOs.ProductDTOs;
+using MDValdez.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MDValdez.Interfaces
@@ -12,11 +13,33 @@ namespace MDValdez.Interfaces
         Task<ActionResult<IEnumerable<Product>>> GetAllProductsAsync();
 
         /// <summary>
-        /// Get a product by Id.
+        /// Absctract method to get a product by Id.
         /// </summary>
         /// <param name="id">Th product ID</param>
         /// <returns>A product object</returns>
         Task<ActionResult<Product>> GetProductByIdAsync(int id);
+
+        /// <summary>
+        /// Absctract method to update a product.
+        /// </summary>
+        /// <param name="id">Id of the product</param>
+        /// <param name="productDto">ProductDto object</param>
+        /// <returns></returns>
+        Task<ActionResult<Product>> PutProductAsync(int id, ProductUpdateDTO productDto);
+
+        /// <summary>
+        /// Absctract method to add a new product.
+        /// </summary>
+        /// <param name="product">Product type</param>
+        /// <returns>The product object</returns>
+        Task<ActionResult<Product>> PostProductAsync(Product product);
+
+        /// <summary>
+        /// Absctract method to delete a product.
+        /// </summary>
+        /// <param name="id">Id of the prdoduct</param>
+        /// <returns></returns>
+        Task<ActionResult<Product>> DeleteProductAsync(int id);
 
     }
 }

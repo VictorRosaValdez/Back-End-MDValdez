@@ -4,7 +4,6 @@ namespace MDValdez.DTOs.ProductDTOs
 {
     public class ProductCreateDTO
     {
-        public int ProductId { get; set; }
 
         [MaxLength(60)]
         public string Name { get; set; }

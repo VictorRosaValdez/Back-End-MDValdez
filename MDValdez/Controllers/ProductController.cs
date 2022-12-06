@@ -3,6 +3,7 @@ using MDValdez.DTOs.ProductDTOs;
 using MDValdez.Interfaces;
 using MDValdez.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net.Mime;
 
 namespace MDValdez.Controllers
@@ -59,6 +60,93 @@ namespace MDValdez.Controllers
             }
 
             return dtoProduct;
+        }
+
+        /// <summary>
+        /// Update a product.
+        /// </summary>
+        /// <param name="id">The product Id</param>
+        /// <param name="productDto">PrdouctDto object</param>
+        /// <returns>Action result without content</returns>
+        /// <response code="204">Succesfully updated object.</response>
+        /// <response code="404">Error: The object you are looking for is not found.</response>
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpPut("{id}")]
+        public async Task<ActionResult> PutProduct(int id, ProductUpdateDTO productDto)
+        {
+            
+            if (id != productDto.ProductId)
+            {
+                return BadRequest();
+            }
+
+            
+            var domainProduct = await _product.PutProductAsync(id, productDto);
+
+            
+            if (domainProduct == null)
+            {
+                return NotFound();
+            }
+
+            try
+            {
+                await _product.PutProductAsync(id, productDto);
+
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
+
+            return NoContent();
+        }
+
+       /// <summary>
+       /// Create a new product object.
+       /// </summary>
+       /// <param name="productDto">A Product DTO object</param>
+       /// <returns>A product Read DTO object.</returns>
+       /// <response code="201">Succesfully created object.</response>
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [HttpPost]
+        public async Task<ActionResult<Product>> PostProduct(ProductCreateDTO productDto)
+        {
+            
+            var domainProduct = _mapper.Map<Product>(productDto);
+
+            
+            await _product.PostProductAsync(domainProduct);
+
+            
+            int productId = _product.PostProductAsync(domainProduct).Id;
+
+            return domainProduct;
+        }
+
+        /// <summary>
+        /// Delete a product by Id.
+        /// </summary>
+        /// <param name="id">Id of the project object</param>
+        /// <returns></returns>
+        /// <response code="204">Succesfully deleted the project.</response>
+        /// <response code="404">Error: The project you are looking for is not found.</response>
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpDelete]
+        public async Task<ActionResult> DeleteProductAsync(int id)
+        {
+            var domainProduct = await _product.DeleteProductAsync(id);
+
+            if (domainProduct == null)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
         }
     }
 }
