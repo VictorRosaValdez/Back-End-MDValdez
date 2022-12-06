@@ -118,11 +118,7 @@ namespace MDValdez.Controllers
             
             var domainProduct = _mapper.Map<Product>(productDto);
 
-            
             await _product.PostProductAsync(domainProduct);
-
-            
-            int productId = _product.PostProductAsync(domainProduct).Id;
 
             return domainProduct;
         }
