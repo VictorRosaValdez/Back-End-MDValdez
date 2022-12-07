@@ -1,4 +1,5 @@
-﻿using System.Xml.Linq;
+﻿using System.Collections;
+using System.Xml.Linq;
 
 namespace MDValdez.Models
 {
@@ -35,7 +36,7 @@ namespace MDValdez.Models
             return products;
         }
 
-        internal static IEnumerable<Customer> GetAccoutsSeeds()
+        public static IEnumerable<Customer> GetAccoutsSeeds()
         {
             var customers = new List<Customer>()
             {
@@ -68,7 +69,7 @@ namespace MDValdez.Models
             return customers;
         }
 
-        internal static IEnumerable<ShoppingCart> GetShoppingCartsSeeds()
+        public static IEnumerable<ShoppingCart> GetShoppingCartsSeeds()
         {
             var shoppinCarts = new List<ShoppingCart>()
             {
@@ -106,7 +107,31 @@ namespace MDValdez.Models
             return shoppinCarts;
         }
 
-        internal static IEnumerable<Order> GetOrdersSeeds()
+        public static IEnumerable<ShoppingCartProduct> GetShoppingCartProductsSeeds()
+        {
+            var shoppingProducts = new List<ShoppingCartProduct>()
+            {
+                new ShoppingCartProduct()
+                {
+                    ProductId = 1,
+                    ShoppingCartId = 2
+                },
+                new ShoppingCartProduct()
+                {
+                    ProductId = 2,
+                    ShoppingCartId = 2
+                },
+
+                new ShoppingCartProduct()
+                {
+                    ProductId = 1,
+                    ShoppingCartId = 3
+                }
+            };
+
+            return shoppingProducts;
+        }
+        public static IEnumerable<Order> GetOrdersSeeds()
         {
             var orders = new List<Order>()
             {

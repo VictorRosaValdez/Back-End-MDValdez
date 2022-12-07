@@ -20,8 +20,11 @@ namespace MDValdez.Dal
         public DbSet<Account> Account { get; set; }
 
         // Table of ShoppingCart
-
         public DbSet<ShoppingCart> ShoppingCart { get; set; }
+
+        
+        // Table of ShoppingCartProduct
+        public DbSet<ShoppingCartProduct> ShoppingCartProduct { get; set; }
 
         public MDDbContext(DbContextOptions options) : base(options)
         {
@@ -29,7 +32,9 @@ namespace MDValdez.Dal
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-           
+
+            // Making the relation with the foreign keys for ShoppingCartProduct.
+            modelBuilder.Entity<ShoppingCartProduct>().HasKey(mgg => new { mgg.ProductId, mgg.ShoppingCartId });
 
             // Seeded data for Product
             modelBuilder.Entity<Product>().HasData(SeedHelper.GetProductsSeeds());
@@ -42,6 +47,9 @@ namespace MDValdez.Dal
 
             // Seeded data for Order
             modelBuilder.Entity<Order>().HasData(SeedHelper.GetOrdersSeeds());
+
+            // Seeded data for ShoppingCartProduct
+            modelBuilder.Entity<ShoppingCartProduct>().HasData(SeedHelper.GetShoppingCartProductsSeeds());
         }
     }
 }

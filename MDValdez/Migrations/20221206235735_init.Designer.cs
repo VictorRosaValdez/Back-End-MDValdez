@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MDValdez.Migrations
 {
     [DbContext(typeof(MDDbContext))]
-    [Migration("20221204175957_init")]
+    [Migration("20221206235735_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -76,21 +76,21 @@ namespace MDValdez.Migrations
                             OrderId = 1,
                             CustomerId = 1,
                             OrderAmount = 250.5,
-                            OrderDate = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2417)
+                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1565)
                         },
                         new
                         {
                             OrderId = 2,
                             CustomerId = 2,
                             OrderAmount = 100.0,
-                            OrderDate = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2423)
+                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1569)
                         },
                         new
                         {
                             OrderId = 3,
                             CustomerId = 3,
                             OrderAmount = 300.0,
-                            OrderDate = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2426)
+                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1571)
                         });
                 });
 
@@ -114,9 +114,6 @@ namespace MDValdez.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("ShoppingCartId")
-                        .HasColumnType("int");
-
                     b.Property<int>("Stock")
                         .HasColumnType("int");
 
@@ -124,8 +121,6 @@ namespace MDValdez.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ProductId");
-
-                    b.HasIndex("ShoppingCartId");
 
                     b.ToTable("Product");
 
@@ -184,22 +179,54 @@ namespace MDValdez.Migrations
                         {
                             ShoppingCartId = 1,
                             CustomerId = 2,
-                            Date = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2317),
+                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1515),
                             TotalPrice = 100.0
                         },
                         new
                         {
                             ShoppingCartId = 2,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2358),
+                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1548),
                             TotalPrice = 200.0
                         },
                         new
                         {
                             ShoppingCartId = 3,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2360),
+                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1550),
                             TotalPrice = 300.0
+                        });
+                });
+
+            modelBuilder.Entity("MDValdez.Models.ShoppingCartProduct", b =>
+                {
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ShoppingCartId")
+                        .HasColumnType("int");
+
+                    b.HasKey("ProductId", "ShoppingCartId");
+
+                    b.HasIndex("ShoppingCartId");
+
+                    b.ToTable("ShoppingCartProduct");
+
+                    b.HasData(
+                        new
+                        {
+                            ProductId = 1,
+                            ShoppingCartId = 2
+                        },
+                        new
+                        {
+                            ProductId = 2,
+                            ShoppingCartId = 2
+                        },
+                        new
+                        {
+                            ProductId = 1,
+                            ShoppingCartId = 3
                         });
                 });
 
@@ -250,13 +277,6 @@ namespace MDValdez.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MDValdez.Models.Product", b =>
-                {
-                    b.HasOne("MDValdez.Models.ShoppingCart", null)
-                        .WithMany("Product")
-                        .HasForeignKey("ShoppingCartId");
-                });
-
             modelBuilder.Entity("MDValdez.Models.ShoppingCart", b =>
                 {
                     b.HasOne("MDValdez.Models.Customer", null)
@@ -266,9 +286,23 @@ namespace MDValdez.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MDValdez.Models.ShoppingCart", b =>
+            modelBuilder.Entity("MDValdez.Models.ShoppingCartProduct", b =>
                 {
+                    b.HasOne("MDValdez.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MDValdez.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany()
+                        .HasForeignKey("ShoppingCartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Product");
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("MDValdez.Models.Customer", b =>

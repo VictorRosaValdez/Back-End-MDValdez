@@ -26,6 +26,23 @@ namespace MDValdez.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Product",
+                columns: table => new
+                {
+                    ProductId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    OrderCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Stock = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Order",
                 columns: table => new
                 {
@@ -68,26 +85,27 @@ namespace MDValdez.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Product",
+                name: "ShoppingCartProduct",
                 columns: table => new
                 {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    OrderCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Stock = table.Column<int>(type: "int", nullable: false),
-                    ShoppingCartId = table.Column<int>(type: "int", nullable: true)
+                    ProductId = table.Column<int>(type: "int", nullable: false),
+                    ShoppingCartId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Product", x => x.ProductId);
+                    table.PrimaryKey("PK_ShoppingCartProduct", x => new { x.ProductId, x.ShoppingCartId });
                     table.ForeignKey(
-                        name: "FK_Product_ShoppingCart_ShoppingCartId",
+                        name: "FK_ShoppingCartProduct_Product_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Product",
+                        principalColumn: "ProductId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_ShoppingCartProduct_ShoppingCart_ShoppingCartId",
                         column: x => x.ShoppingCartId,
                         principalTable: "ShoppingCart",
-                        principalColumn: "ShoppingCartId");
+                        principalColumn: "ShoppingCartId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.InsertData(
@@ -102,12 +120,12 @@ namespace MDValdez.Migrations
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "ProductId", "Description", "Name", "OrderCode", "ShoppingCartId", "Stock", "picture" },
+                columns: new[] { "ProductId", "Description", "Name", "OrderCode", "Stock", "picture" },
                 values: new object[,]
                 {
-                    { 1, "De beste schoenen ooit", "Mooie schoenen", "beste154", null, 0, null },
-                    { 2, "Een leuke zomerse T-Shirt", "T-Shirt", "beste11", null, 0, null },
-                    { 3, "Geweldige broek", "Broek", "beste1122", null, 0, null }
+                    { 1, "De beste schoenen ooit", "Mooie schoenen", "beste154", 0, null },
+                    { 2, "Een leuke zomerse T-Shirt", "T-Shirt", "beste11", 0, null },
+                    { 3, "Geweldige broek", "Broek", "beste1122", 0, null }
                 });
 
             migrationBuilder.InsertData(
@@ -115,9 +133,9 @@ namespace MDValdez.Migrations
                 columns: new[] { "OrderId", "CustomerId", "OrderAmount", "OrderDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 250.5, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2417) },
-                    { 2, 2, 100.0, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2423) },
-                    { 3, 3, 300.0, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2426) }
+                    { 1, 1, 250.5, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1565) },
+                    { 2, 2, 100.0, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1569) },
+                    { 3, 3, 300.0, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1571) }
                 });
 
             migrationBuilder.InsertData(
@@ -125,10 +143,25 @@ namespace MDValdez.Migrations
                 columns: new[] { "ShoppingCartId", "CustomerId", "Date", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2317), 100.0 },
-                    { 2, 1, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2358), 200.0 },
-                    { 3, 1, new DateTime(2022, 12, 4, 18, 59, 57, 702, DateTimeKind.Local).AddTicks(2360), 300.0 }
+                    { 1, 2, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1515), 100.0 },
+                    { 2, 1, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1548), 200.0 },
+                    { 3, 1, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1550), 300.0 }
                 });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingCartProduct",
+                columns: new[] { "ProductId", "ShoppingCartId" },
+                values: new object[] { 1, 2 });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingCartProduct",
+                columns: new[] { "ProductId", "ShoppingCartId" },
+                values: new object[] { 1, 3 });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingCartProduct",
+                columns: new[] { "ProductId", "ShoppingCartId" },
+                values: new object[] { 2, 2 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Order_CustomerId",
@@ -136,20 +169,23 @@ namespace MDValdez.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Product_ShoppingCartId",
-                table: "Product",
-                column: "ShoppingCartId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingCart_CustomerId",
                 table: "ShoppingCart",
                 column: "CustomerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingCartProduct_ShoppingCartId",
+                table: "ShoppingCartProduct",
+                column: "ShoppingCartId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
                 name: "Order");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingCartProduct");
 
             migrationBuilder.DropTable(
                 name: "Product");
