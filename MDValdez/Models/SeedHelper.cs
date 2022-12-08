@@ -46,6 +46,7 @@ namespace MDValdez.Models
                     adress = "Landlaan 1",
                     CustomerName = "Jan",
                     Email = "jantest@hotmail.com",
+                    Password = "admin123"
                     
                 },
 
@@ -55,6 +56,7 @@ namespace MDValdez.Models
                     adress = "Kade 3",
                     CustomerName = "Peter",
                     Email = "petertest@hotmail.com",
+                    Password = "welcome"
                 },
 
                new Customer ()
@@ -63,6 +65,7 @@ namespace MDValdez.Models
                     adress = "Sonseweg 15",
                     CustomerName = "Jost",
                     Email = "josttest@hotmail.com",
+                    Password = "welcome2"
                 },
             };
 

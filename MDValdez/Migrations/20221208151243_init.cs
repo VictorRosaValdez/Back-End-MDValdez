@@ -16,6 +16,7 @@ namespace MDValdez.Migrations
                     AccountId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CustomerName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     adress = table.Column<string>(type: "nvarchar(max)", nullable: true)
@@ -110,12 +111,12 @@ namespace MDValdez.Migrations
 
             migrationBuilder.InsertData(
                 table: "Account",
-                columns: new[] { "AccountId", "CustomerName", "Discriminator", "Email", "adress" },
+                columns: new[] { "AccountId", "CustomerName", "Discriminator", "Email", "Password", "adress" },
                 values: new object[,]
                 {
-                    { 1, "Jan", "Customer", "jantest@hotmail.com", "Landlaan 1" },
-                    { 2, "Peter", "Customer", "petertest@hotmail.com", "Kade 3" },
-                    { 3, "Jost", "Customer", "josttest@hotmail.com", "Sonseweg 15" }
+                    { 1, "Jan", "Customer", "jantest@hotmail.com", "admin123", "Landlaan 1" },
+                    { 2, "Peter", "Customer", "petertest@hotmail.com", "welcome", "Kade 3" },
+                    { 3, "Jost", "Customer", "josttest@hotmail.com", "welcome2", "Sonseweg 15" }
                 });
 
             migrationBuilder.InsertData(
@@ -133,9 +134,9 @@ namespace MDValdez.Migrations
                 columns: new[] { "OrderId", "CustomerId", "OrderAmount", "OrderDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 250.5, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1565) },
-                    { 2, 2, 100.0, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1569) },
-                    { 3, 3, 300.0, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1571) }
+                    { 1, 1, 250.5, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(259) },
+                    { 2, 2, 100.0, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(263) },
+                    { 3, 3, 300.0, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(265) }
                 });
 
             migrationBuilder.InsertData(
@@ -143,9 +144,9 @@ namespace MDValdez.Migrations
                 columns: new[] { "ShoppingCartId", "CustomerId", "Date", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1515), 100.0 },
-                    { 2, 1, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1548), 200.0 },
-                    { 3, 1, new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1550), 300.0 }
+                    { 1, 2, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(208), 100.0 },
+                    { 2, 1, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(242), 200.0 },
+                    { 3, 1, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(244), 300.0 }
                 });
 
             migrationBuilder.InsertData(

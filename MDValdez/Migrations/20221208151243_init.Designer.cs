@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MDValdez.Migrations
 {
     [DbContext(typeof(MDDbContext))]
-    [Migration("20221206235735_init")]
+    [Migration("20221208151243_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -37,6 +37,10 @@ namespace MDValdez.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -76,21 +80,21 @@ namespace MDValdez.Migrations
                             OrderId = 1,
                             CustomerId = 1,
                             OrderAmount = 250.5,
-                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1565)
+                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(259)
                         },
                         new
                         {
                             OrderId = 2,
                             CustomerId = 2,
                             OrderAmount = 100.0,
-                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1569)
+                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(263)
                         },
                         new
                         {
                             OrderId = 3,
                             CustomerId = 3,
                             OrderAmount = 300.0,
-                            OrderDate = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1571)
+                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(265)
                         });
                 });
 
@@ -179,21 +183,21 @@ namespace MDValdez.Migrations
                         {
                             ShoppingCartId = 1,
                             CustomerId = 2,
-                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1515),
+                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(208),
                             TotalPrice = 100.0
                         },
                         new
                         {
                             ShoppingCartId = 2,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1548),
+                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(242),
                             TotalPrice = 200.0
                         },
                         new
                         {
                             ShoppingCartId = 3,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 7, 0, 57, 34, 972, DateTimeKind.Local).AddTicks(1550),
+                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(244),
                             TotalPrice = 300.0
                         });
                 });
@@ -249,6 +253,7 @@ namespace MDValdez.Migrations
                         {
                             AccountId = 1,
                             Email = "jantest@hotmail.com",
+                            Password = "admin123",
                             CustomerName = "Jan",
                             adress = "Landlaan 1"
                         },
@@ -256,6 +261,7 @@ namespace MDValdez.Migrations
                         {
                             AccountId = 2,
                             Email = "petertest@hotmail.com",
+                            Password = "welcome",
                             CustomerName = "Peter",
                             adress = "Kade 3"
                         },
@@ -263,6 +269,7 @@ namespace MDValdez.Migrations
                         {
                             AccountId = 3,
                             Email = "josttest@hotmail.com",
+                            Password = "welcome2",
                             CustomerName = "Jost",
                             adress = "Sonseweg 15"
                         });

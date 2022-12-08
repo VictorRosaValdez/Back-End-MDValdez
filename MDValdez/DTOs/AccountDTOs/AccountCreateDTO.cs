@@ -7,6 +7,9 @@ namespace MDValdez.DTOs.AccountDTOs
         public string CustomerName { get; set; }
         public string adress { get; set; }
 
-      
+        public string Email { get; set; }
+        public string Password { get; set; }
+
+
     }
 }
