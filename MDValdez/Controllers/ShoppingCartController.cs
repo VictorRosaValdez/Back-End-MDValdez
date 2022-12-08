@@ -159,15 +159,21 @@ namespace MDValdez.Controllers
         [HttpGet("{id}/shoppingcart/product")]
         public async Task<ActionResult<ShoppingCart>> GetAllProductsInShoppingCart(int id)
         {
-            var productsInShoppingCart = await _shoppingCart.GetAllProductsInhoppingCartAsync(id);
 
-            if (productsInShoppingCart.Value == null)
+            var domainShoppingCart = await _shoppingCart.GetShoppingCartByIdAsync(id);
+
+            if (domainShoppingCart.Value == null)
             {
                 return NotFound();
             }
+            else
+            {
+                var productsInShoppingCart = await _shoppingCart.GetAllProductsInhoppingCartAsync(id);
 
+                return Ok(productsInShoppingCart);
+            }
 
-            return Ok(productsInShoppingCart);
+           
         }
     }
 }
