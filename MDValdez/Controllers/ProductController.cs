@@ -126,10 +126,10 @@ namespace MDValdez.Controllers
         /// <summary>
         /// Delete a product by Id.
         /// </summary>
-        /// <param name="id">Id of the project object</param>
+        /// <param name="id">Id of the product object</param>
         /// <returns></returns>
-        /// <response code="204">Succesfully deleted the project.</response>
-        /// <response code="404">Error: The project you are looking for is not found.</response>
+        /// <response code="204">Succesfully deleted the product.</response>
+        /// <response code="404">Error: The product you are looking for is not found.</response>
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [HttpDelete]

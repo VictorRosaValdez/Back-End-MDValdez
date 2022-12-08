@@ -11,9 +11,6 @@ namespace MDValdez.DTOs.AccountDTOs
         public int CustomerId { get; set; }
         public double TotalPrice { get; set; }
 
-        // Navigation Property
-        public ICollection<Product> Product { get; set; }
-
 
     }
 }

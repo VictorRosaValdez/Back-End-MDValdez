@@ -4,10 +4,12 @@ namespace MDValdez.DTOs.AccountDTOs
 {
     public class ShoppingCartDeleteDTO
     {
-        //public int OrderId { get; set; }
-        public DateTime OrderDate { get; set; }
+        public int ShoppingCartId { get; set; }
+
+        public DateTime Date { get; set; }
+
         public int CustomerId { get; set; }
-        public double OrderAmount { get; set; }
+        public double TotalPrice { get; set; }
 
 
     }
