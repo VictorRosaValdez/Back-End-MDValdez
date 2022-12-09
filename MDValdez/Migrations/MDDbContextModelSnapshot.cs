@@ -78,21 +78,21 @@ namespace MDValdez.Migrations
                             OrderId = 1,
                             CustomerId = 1,
                             OrderAmount = 250.5,
-                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(259)
+                            OrderDate = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4692)
                         },
                         new
                         {
                             OrderId = 2,
                             CustomerId = 2,
                             OrderAmount = 100.0,
-                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(263)
+                            OrderDate = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4696)
                         },
                         new
                         {
                             OrderId = 3,
                             CustomerId = 3,
                             OrderAmount = 300.0,
-                            OrderDate = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(265)
+                            OrderDate = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4698)
                         });
                 });
 
@@ -103,6 +103,10 @@ namespace MDValdez.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ProductId"), 1L, 1);
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -130,24 +134,27 @@ namespace MDValdez.Migrations
                         new
                         {
                             ProductId = 1,
-                            Description = "De beste schoenen ooit",
-                            Name = "Mooie schoenen",
+                            Category = "coat",
+                            Description = "De beste jas ooit",
+                            Name = "Mooie Jas",
                             OrderCode = "beste154",
                             Stock = 0
                         },
                         new
                         {
                             ProductId = 2,
-                            Description = "Een leuke zomerse T-Shirt",
-                            Name = "T-Shirt",
+                            Category = "jewelry",
+                            Description = "Gouden sieraden",
+                            Name = "Mooie sieraden",
                             OrderCode = "beste11",
                             Stock = 0
                         },
                         new
                         {
                             ProductId = 3,
-                            Description = "Geweldige broek",
-                            Name = "Broek",
+                            Category = "shoes",
+                            Description = "De beste schoenen ooit gemaakt",
+                            Name = "Beste schoenen ooit",
                             OrderCode = "beste1122",
                             Stock = 0
                         });
@@ -181,21 +188,21 @@ namespace MDValdez.Migrations
                         {
                             ShoppingCartId = 1,
                             CustomerId = 2,
-                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(208),
+                            Date = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4615),
                             TotalPrice = 100.0
                         },
                         new
                         {
                             ShoppingCartId = 2,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(242),
+                            Date = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4665),
                             TotalPrice = 200.0
                         },
                         new
                         {
                             ShoppingCartId = 3,
                             CustomerId = 1,
-                            Date = new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(244),
+                            Date = new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4668),
                             TotalPrice = 300.0
                         });
                 });
@@ -252,7 +259,7 @@ namespace MDValdez.Migrations
                             AccountId = 1,
                             Email = "jantest@hotmail.com",
                             Password = "admin123",
-                            CustomerName = "Jan",
+                            CustomerName = "jan",
                             adress = "Landlaan 1"
                         },
                         new
@@ -260,7 +267,7 @@ namespace MDValdez.Migrations
                             AccountId = 2,
                             Email = "petertest@hotmail.com",
                             Password = "welcome",
-                            CustomerName = "Peter",
+                            CustomerName = "peter",
                             adress = "Kade 3"
                         },
                         new
@@ -268,7 +275,7 @@ namespace MDValdez.Migrations
                             AccountId = 3,
                             Email = "josttest@hotmail.com",
                             Password = "welcome2",
-                            CustomerName = "Jost",
+                            CustomerName = "jost",
                             adress = "Sonseweg 15"
                         });
                 });

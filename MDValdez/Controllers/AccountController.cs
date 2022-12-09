@@ -63,6 +63,30 @@ namespace MDValdez.Controllers
         }
 
         /// <summary>
+        /// Get an account by name.
+        /// </summary>
+        /// <param name="name">The account name</param>
+        /// <returns>An account object</returns>
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [HttpGet("/accounts/{id}/{name}")]
+        public async Task<ActionResult<AccountReadDTO>> GetAccountByNameId(int id, string name)
+        {
+            var domainAccount = await _account.GetAccountByNameAsync(id, name);
+
+
+            var dtoAccount = _mapper.Map<AccountReadDTO>(domainAccount.Value);
+
+            if (dtoAccount == null)
+            {
+                return NotFound();
+            }
+
+            return dtoAccount;
+        }
+
+        /// <summary>
         /// Update an Account.
         /// </summary>
         /// <param name="id">The account Id</param>

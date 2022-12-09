@@ -19,6 +19,12 @@ namespace MDValdez.Interfaces
         Task<ActionResult<Account>> GetAccountByIdAsync(int id);
 
         /// <summary>
+        /// Abstract method to get an account by name.
+        /// </summary>
+        /// <returns>An accountDto</returns>
+        Task<ActionResult<Customer>> GetAccountByNameAsync(int id, string name);
+
+        /// <summary>
         /// Absctract method to update an account.
         /// </summary>
         /// <param name="id">Id of the account</param>

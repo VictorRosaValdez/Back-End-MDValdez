@@ -12,24 +12,27 @@ namespace MDValdez.Models
                 new Product()
                 {
                     ProductId = 1,
-                    Name = "Mooie schoenen",
-                    Description = "De beste schoenen ooit",
+                    Name = "Mooie Jas",
+                    Category = "coat",
+                    Description = "De beste jas ooit",
                     OrderCode = "beste154"
                 },
 
                  new Product()
                 {
                     ProductId = 2,
-                    Name = "T-Shirt",
-                    Description = "Een leuke zomerse T-Shirt",
+                    Name = "Mooie sieraden",
+                    Category= "jewelry",
+                    Description = "Gouden sieraden",
                     OrderCode = "beste11"
                 },
 
                 new Product()
                 {
                     ProductId = 3,
-                    Name = "Broek",
-                    Description = "Geweldige broek",
+                    Name = "Beste schoenen ooit",
+                    Category = "shoes",
+                    Description = "De beste schoenen ooit gemaakt",
                     OrderCode = "beste1122"
                 }
             };
@@ -44,7 +47,7 @@ namespace MDValdez.Models
                 {
                     AccountId = 1,
                     adress = "Landlaan 1",
-                    CustomerName = "Jan",
+                    CustomerName = "jan",
                     Email = "jantest@hotmail.com",
                     Password = "admin123"
                     
@@ -54,7 +57,7 @@ namespace MDValdez.Models
                 {
                     AccountId = 2,
                     adress = "Kade 3",
-                    CustomerName = "Peter",
+                    CustomerName = "peter",
                     Email = "petertest@hotmail.com",
                     Password = "welcome"
                 },
@@ -63,7 +66,7 @@ namespace MDValdez.Models
                 {
                     AccountId = 3,
                     adress = "Sonseweg 15",
-                    CustomerName = "Jost",
+                    CustomerName = "jost",
                     Email = "josttest@hotmail.com",
                     Password = "welcome2"
                 },

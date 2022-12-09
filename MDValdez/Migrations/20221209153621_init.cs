@@ -33,6 +33,7 @@ namespace MDValdez.Migrations
                     ProductId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     OrderCode = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     picture = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -114,19 +115,19 @@ namespace MDValdez.Migrations
                 columns: new[] { "AccountId", "CustomerName", "Discriminator", "Email", "Password", "adress" },
                 values: new object[,]
                 {
-                    { 1, "Jan", "Customer", "jantest@hotmail.com", "admin123", "Landlaan 1" },
-                    { 2, "Peter", "Customer", "petertest@hotmail.com", "welcome", "Kade 3" },
-                    { 3, "Jost", "Customer", "josttest@hotmail.com", "welcome2", "Sonseweg 15" }
+                    { 1, "jan", "Customer", "jantest@hotmail.com", "admin123", "Landlaan 1" },
+                    { 2, "peter", "Customer", "petertest@hotmail.com", "welcome", "Kade 3" },
+                    { 3, "jost", "Customer", "josttest@hotmail.com", "welcome2", "Sonseweg 15" }
                 });
 
             migrationBuilder.InsertData(
                 table: "Product",
-                columns: new[] { "ProductId", "Description", "Name", "OrderCode", "Stock", "picture" },
+                columns: new[] { "ProductId", "Category", "Description", "Name", "OrderCode", "Stock", "picture" },
                 values: new object[,]
                 {
-                    { 1, "De beste schoenen ooit", "Mooie schoenen", "beste154", 0, null },
-                    { 2, "Een leuke zomerse T-Shirt", "T-Shirt", "beste11", 0, null },
-                    { 3, "Geweldige broek", "Broek", "beste1122", 0, null }
+                    { 1, "coat", "De beste jas ooit", "Mooie Jas", "beste154", 0, null },
+                    { 2, "jewelry", "Gouden sieraden", "Mooie sieraden", "beste11", 0, null },
+                    { 3, "shoes", "De beste schoenen ooit gemaakt", "Beste schoenen ooit", "beste1122", 0, null }
                 });
 
             migrationBuilder.InsertData(
@@ -134,9 +135,9 @@ namespace MDValdez.Migrations
                 columns: new[] { "OrderId", "CustomerId", "OrderAmount", "OrderDate" },
                 values: new object[,]
                 {
-                    { 1, 1, 250.5, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(259) },
-                    { 2, 2, 100.0, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(263) },
-                    { 3, 3, 300.0, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(265) }
+                    { 1, 1, 250.5, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4692) },
+                    { 2, 2, 100.0, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4696) },
+                    { 3, 3, 300.0, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4698) }
                 });
 
             migrationBuilder.InsertData(
@@ -144,9 +145,9 @@ namespace MDValdez.Migrations
                 columns: new[] { "ShoppingCartId", "CustomerId", "Date", "TotalPrice" },
                 values: new object[,]
                 {
-                    { 1, 2, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(208), 100.0 },
-                    { 2, 1, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(242), 200.0 },
-                    { 3, 1, new DateTime(2022, 12, 8, 16, 12, 43, 576, DateTimeKind.Local).AddTicks(244), 300.0 }
+                    { 1, 2, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4615), 100.0 },
+                    { 2, 1, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4665), 200.0 },
+                    { 3, 1, new DateTime(2022, 12, 9, 16, 36, 21, 766, DateTimeKind.Local).AddTicks(4668), 300.0 }
                 });
 
             migrationBuilder.InsertData(

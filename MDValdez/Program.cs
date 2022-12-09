@@ -4,6 +4,7 @@ using MDValdez.Dal;
 using MDValdez.Dal.Repositories;
 using MDValdez.Interfaces;
 using System.Reflection;
+using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,19 @@ builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 // Injection of ShoppingCartRepository
 builder.Services.AddScoped<IShoppingCartRepository, ShoppingCartRepository>();
 
+var MyAllowSpecificOrigins = "_myAllowSpecificOrigins";
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: MyAllowSpecificOrigins,
+                      policy =>
+                      {
+                          policy.WithOrigins("http://localhost:4200",
+                                              "http://localhost:4200")
+                                                .AllowAnyHeader()
+                                                .AllowAnyMethod();
+                      });
+});
 
 var app = builder.Build();
 
@@ -69,6 +83,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors(MyAllowSpecificOrigins);
 
 app.UseAuthorization();
 

@@ -35,6 +35,23 @@ namespace MDValdez.Dal.Repositories
             return domainAccount;
         }
 
+        public async Task<ActionResult<Customer>> GetAccountByNameAsync(int id, string name)
+        {
+            var domainAccount = await _context.Customer.FindAsync(id);
+           
+
+            if (domainAccount.CustomerName == name.Trim())
+            {
+                return domainAccount;
+            }
+
+            else
+            {
+                return null;
+            }
+            
+        }
+
         public async Task<ActionResult<Customer>> PutAccountAsync(int id, AccountUpdateDTO accountDto)
         {
             var domainAccount = _context.Customer.Find(id);
